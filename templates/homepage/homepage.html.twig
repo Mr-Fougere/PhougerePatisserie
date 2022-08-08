@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{{parent()}}
+{% endblock %}
+
+{% block div %}
+	<div class="row h100 w100 m-2">
+		<div class="col-2 h100 cadre-new bg-beige p-1">
+			<img class="img-card h20 w100" src="https://img.lemde.fr/2019/11/26/1300/0/3840/2546/664/0/75/0/de1eca5_7HmSwtiWmboEFOTPOBP6Y2rm.jpg" alt="Chef Albert Phougere">
+			<div class="row h70 d-flex justify-content-center">
+				<span class="col-12 h10 text-center d-flex">La recette du mois choisis par le chef Phougere</span>
+				{% for article in articles %}
+					{% if article.id == 29 %}
+						<div class="card card-recipe g-0 h40" style="width: 12rem;">
+							<h5 class="card-title text-center">{{article.title}}</h5>
+							<img class="img-card d-flex align-self-center " style="width: 8rem;height:8rem;object-fit: contain;" src="uploads/brochures/{{article.brochureFileName}}" alt="Image non trouvée">
+							<div class="card-body d-flex justify-content-between">
+								<p class="time">{{article.time}}</p>
+								<p class="difficulty">{{article.difficulty}}</p>
+								<p class="price">{{article.price}}</p>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+				<div class="h50"></div>
+			</div>
+
+		</div>
+		<div class="col-9 h100 m-2">
+			<div class="row h30 cadre-new p-1 bg-beige">
+				<span class="col-12 h10">Dernière recette ajoutées</span>
+				<div class="col-12 h90 d-flex">
+					{% if (articles|length)<5 %}
+						{% for article in articles|slice(0, articles|length) %}
+							<div class="card card-recipe" style="width: 18rem;">
+								<h5 class="card-title text-center">{{article.title}}</h5>
+								<img class="img-card d-flex align-self-center " style="width: 8rem;height:8rem;object-fit: contain;" src="uploads/brochures/{{article.brochureFileName}}" alt="Image non trouvée">
+								<div class="card-body d-flex justify-content-between">
+									<p class="time">{{article.time}}</p>
+									<p class="difficulty">{{article.difficulty}}</p>
+									<p class="price">{{article.price}}</p>
+								</div>
+							</div>
+						{% endfor %}
+					{% else %}
+						{% for article in articles|slice((articles|length)-5, articles|length) %}
+							<div class="card card-recipe m-1" style="width: 18rem;">
+								<h5 class="card-title text-center">{{article.title}}</h5>
+								<img class="img-card d-flex align-self-center " style="width: 8rem;height:8rem;object-fit: contain;" src="uploads/brochures/{{article.brochureFileName}}" alt="Image non trouvée">
+								<div class="card-body d-flex justify-content-between">
+									<p class="time">{{article.time}}</p>
+									<p class="difficulty">{{article.difficulty}}</p>
+									<p class="price">{{article.price}}</p>
+								</div>
+							</div>
+						{% endfor %}
+					{% endif %}
+
+
+				</div>
+			</div>
+			<div class="row h30 cadre-new my-2 p-1 bg-beige">
+				<span class="col-12 h10">Recettes Rapides</span>
+				<div class="col-12 h90 d-flex">
+					{% set rapide = {'5 minutes':'15minutes'} %}
+					{% for article in articles %}
+						{% if article.time=="5 minutes" or  article.time=="15 minutes" %}
+							<div class="card card-recipe m-1" style="width: 18rem;">
+								<h5 class="card-title text-center">{{article.title}}</h5>
+								<img class="img-card d-flex align-self-center " style="width: 8rem;height:8rem;object-fit: contain;" src="uploads/brochures/{{article.brochureFileName}}" alt="Image non trouvée">
+								<div class="card-body d-flex justify-content-around">
+									<p class="time">{{article.time}}</p>
+									<p class="difficulty">{{article.difficulty}}</p>
+									<p class="price">{{article.price}}</p>
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			<div class="row h30 cadre-new p-1 bg-beige">
+				<span class="col-12 h10">Recettes pour débutant</span>
+				<div class="col-12 h90 d-flex	">
+					{% for article in articles %}
+						{% if article.difficulty == "Facile" %}
+							<div class="card card-recipe m-1" style="width: 18rem;">
+								<h5 class="card-title text-center">{{article.title}}</h5>
+								<img class="img-card d-flex align-self-center " style="width: 8rem;height:8rem;object-fit: contain;" src="uploads/brochures/{{article.brochureFileName}}" alt="Image non trouvée">
+								<div class="card-body d-flex justify-content-around">
+									<p class="time">{{article.time}}</p>
+									<p class="price">{{article.price}}</p>
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

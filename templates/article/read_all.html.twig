@@ -1,0 +1,95 @@
+{% extends "base.html.twig" %}
+{% set temps = [" 5 minutes","15 minutes","30 minutes","45 minutes"," 1 heure ","2 heures","+2 heures" ] %}
+{% set prix = [" € ", " €€ ", "€€€"] %}
+{% set niveau = ["Facile","Intermédiaire","Expert","Chef"] %}
+{% block title %}
+	Recettes
+{% endblock %}
+
+{% block body %}
+	{{parent()}}
+{% endblock %}
+{% block div %}
+	<div class="row">
+		<div class="col-12 h10 d-flex justify-content-around p-1 filter-bar" id="filter-bar">
+			<div class="btn-group" role="group" aria-label="temps">
+				{% for i in 1..7 %}
+					<input type="radio" class="btn-check" name="btnTemps" id="btnradio{{i}}" autocomplete="off" checked>
+					<label class="btn btn-outline-success" for="btnradio{{i}}" id="label{{i}}">{{temps[i - 1]}}</label>
+				{% endfor %}
+			</div>
+			<div class="btn-group" role="group" aria-label="prix">
+				{% for i in 1..3 %}
+					<input type="radio" class="btn-check" name="btnPrix" id="btnradio{{i + 7}}" autocomplete="off" checked>
+					<label class="btn btn-outline-success" for="btnradio{{i + 7}}" id="label{{i + 7}}">{{prix[i - 1]}}</label>
+				{% endfor %}
+			</div>
+			<div class="btn-group" role="group" aria-label="niveau" id="group-niveau">
+				{% for i in 1..4 %}
+					<input type="radio" class="btn-check" name="btnNiveau" id="btnradio{{i + 11}}" autocomplete="off" checked>
+					<label class="btn btn-outline-success" for="btnradio{{i + 11}}" id="label{{i + 11}}">{{niveau[i - 1]}}</label>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="row h90 d-flex justify-content-center">
+			{% for article in articles %}
+				{% set url_delete = "/article/delete/"~ article.id %}
+				{% set url_read = "read/"~ article.id %}
+				{% set url_edit = "edit/"~ article.id %}
+				<div class="card card-recipe col-6 h100 g-0 d-flex align-items-center m-2" 
+					id="{{article.time}} {{article.price}} {{article.difficulty}}" 
+					style="width: 18rem;"
+					>
+					<div class="card-title w100 d-flex align-items-center">
+						<span class=" title w100 g-0 text-center">{{article.title}}
+						</span>
+						<a href={{url_delete}} class="btn delete-btn ">
+							<i class="bi bi-x-lg"></i>
+						</a>
+					</div>
+
+					<img class="img-card " style="width: 8rem;height:8rem;object-fit: contain;" src="/uploads/brochures/{{article.brochureFileName}}" alt="Image non trouvée">
+					<div class="card-body w100 g-0">
+						<div class="d-flex w100 justify-content-between">
+							<p class="time">{{article.time}}</p>
+							<p class="difficulty">{{article.difficulty}}</p>
+							<p class="price">{{article.price}}</p>
+						</div>
+						<div class="d-flex w100 justify-content-around">
+							<a href={{url_read}} class="btn btn-see">
+								Voir la recette</a>
+							<a href={{url_edit}} class="btn btn-edit">
+								<i class="bi bi-pencil-square"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+
+			{% endfor %}
+		</div>
+
+	</div>
+
+	<script>
+		var btnGroup = document.getElementById("filter-bar");
+btnGroup.addEventListener("click", function (event) {
+var targetId = "label" + event.target.id.slice(-2);
+if (targetId.charAt(5) === 'l') {
+var targetId = "label" + event.target.id.slice(-1);
+}
+var cards = document.getElementsByClassName('card');
+for (let i = 0; i < cards.length; i++) {
+
+if (cards[i].id.includes(document.getElementById(targetId).innerHTML)) {
+document.getElementById(cards[i].id).style = "width: 18rem;";
+document.getElementById(cards[i].id).style.visibility = "visible";
+
+} else {
+document.getElementById(cards[i].id).style = "width: 0rem;";
+document.getElementById(cards[i].id).style.visibility = "hidden";
+
+};
+}
+})
+	</script>
+{% endblock %}

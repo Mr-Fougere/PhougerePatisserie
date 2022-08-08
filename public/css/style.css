@@ -1,0 +1,215 @@
+body {
+    --hunter-green: rgba(56, 102, 65, 1);
+    --may-green: rgba(106, 153, 78, 1);
+    --android-green: rgba(167, 201, 87, 1);
+    --eggshell: rgba(242, 232, 207, 1);
+    --deep-chestnut: rgba(188, 71, 73, 1);
+    --dark-olive-green: #606c38ff;
+    --kombu-green: #283618ff;
+    --artichoke: #93987cff;
+    --cornsilk: #fefae0ff;
+    --earth-yellow: #EECE9F;
+    --bronze: #cd8742ff;
+    --liver-dogs: #bc6c25ff;
+    --cafe-noir: #533113ff;
+}
+
+@font-face {
+    font-family: "Harlow Solid Italic";
+    src: url("//db.onlinewebfonts.com/t/208c60a0a6b9e5ebbc434f9f24c2aeae.eot");
+    src: url("//db.onlinewebfonts.com/t/208c60a0a6b9e5ebbc434f9f24c2aeae.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/208c60a0a6b9e5ebbc434f9f24c2aeae.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/208c60a0a6b9e5ebbc434f9f24c2aeae.woff") format("woff"), url("//db.onlinewebfonts.com/t/208c60a0a6b9e5ebbc434f9f24c2aeae.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/208c60a0a6b9e5ebbc434f9f24c2aeae.svg#Harlow Solid Italic") format("svg");
+}
+
+a {
+    font-family: "Harlow Solid Italic";
+    text-decoration: none;
+}
+
+textarea {
+    font-family: "Harlow Solid Italic";
+    min-height: 100% !important;
+}
+
+.bg-green {
+    background-color: var(--hunter-green);
+}
+
+.bg-beige {
+    background-color: var(--eggshell);
+}
+
+.text-green {
+    color: var(--hunter-green);
+}
+
+.h10 {
+    height: 10%;
+}
+
+.h20 {
+    height: 20%;
+}
+
+.h30 {
+    height: 30%;
+}
+
+.h40 {
+    height: 40%;
+}
+
+.h50 {
+    height: 50%;
+}
+
+.h60 {
+    height: 60%;
+}
+
+.h70 {
+    height: 70%;
+}
+
+.h80 {
+    height: 80%;
+}
+
+.h90 {
+    height: 90%;
+}
+
+.h100 {
+    height: 100%;
+}
+
+.vh100 {
+    height: 100vh;
+}
+
+.w10 {
+    width: 10%;
+}
+
+.w20 {
+    width: 20%;
+}
+
+.w30 {
+    width: 30%;
+}
+
+.w40 {
+    width: 40%
+}
+
+.w50 {
+    width: 50%
+}
+
+.w60 {
+    width: 60%
+}
+
+.w70 {
+    width: 70%
+}
+
+.w80 {
+    width: 80%
+}
+
+.w90 {
+    width: 90%
+}
+
+.w100 {
+    width: 100%
+}
+
+.cadre-recette {
+    border: 10px, solid, var(--deep-chestnut);
+    background-color: var(--eggshell);
+    display: flex;
+    flex-direction: column;
+    font-family: "Harlow Solid Italic";
+}
+
+.cadre-new {
+    font-family: "Harlow Solid Italic";
+    border-color: var(--cafe-noir);
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.img-card {
+    background-color: white !important;
+    border-radius: 1rem !important;
+}
+
+.card-recipe {
+    background-color: var(--earth-yellow);
+}
+
+.card-title {
+    background-color: var(--cafe-noir);
+    color: var(--cornsilk);
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+}
+
+.card {
+    font-family: "Harlow Solid Italic";
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.borderRounded {
+    font-family: "Harlow Solid Italic";
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.delete-btn {
+    position: absolute;
+    right: 0;
+    color: var(--artichoke);
+}
+
+span.title {
+    font-size: 1rem;
+    color: var(--cornsilk);
+}
+
+#article_price {
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center
+}
+
+.btn-see {
+    background-color: var(--bronze);
+    color: var(--cafe-noir);
+}
+
+.btn-edit {
+    background-color: var(--liver-dogs);
+    color: var(--earth-yellow);
+}
+
+.filter-bar {
+    border-bottom: 1px solid;
+    background-color: var(--may-green);
+    font-family: "Harlow Solid Italic";
+}
+
+.btn-outlined-green {
+    border-color: var(--hunter-green);
+}
+
+.bg-beige {
+    background-color: var(--cornsilk)
+}
+
+span.recipe-title {
+    font-size: 2rem;
+}

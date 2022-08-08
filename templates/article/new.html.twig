@@ -1,0 +1,110 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{% if typeForm =="Publier la recette" %}
+		Rédaction d'article
+	{% else %}
+		Edition d'article
+	{% endif %}
+
+{% endblock %}
+{% block body %}
+	{{parent()}}
+{% endblock %}
+{% block div %}
+	{% set qty = 0 %}
+	<div class="container justify-content-center d-flex h80 pt-5">
+		<div class="row g-0 w70 h100 p-3 cadre-new card-recipe">
+			<div class="col-12	 h90 p-2" id="colonne-gauche">
+				<div class="row h100">
+					{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+					{{ form_row(form.brochureFileName) }}
+					<div class="col-6 h20 " id="title">
+
+						{{form_row(form.title)}}
+					</div>
+
+					<div class="col-12 h10 d-flex justify-content-around">
+						<div class="row w30">
+							{{ form_widget(form.time) }}
+							
+						</div>
+
+						<div class="row w40 d-flex">
+							{{ form_widget(form.price) }}
+						</div>
+						<div class="row w30">
+							{{ form_widget(form.difficulty) }}
+						</div>
+					</div>
+					<div class="col-12 h50" >
+						<div class="" id="recipe">
+							{{form_row(form.content)}}
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			<div class="col-12 h10 d-flex justify-content-around">
+				<button type="submit" class="btn btn-success bg-green col-4">
+				{{typeForm}}
+				</button>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+
+	<script>
+		let qtyAnchor = document.getElementById("qty");
+let etape = 1;
+const idContent = document.getElementById('article_content');
+let tempKey = [];
+let etapeLine = [0];
+function countLines(id, carpetPos) {
+let text = document.getElementById(id).value.substring(0, carpetPos);
+let lines = text.split(/\r|\r\n|\n/);
+let count = lines.length;
+return count;
+}
+
+countLines("article_content");
+function checkTextArea(e) {
+const getCaretPosition = e => e && e.selectionStart || -1;
+
+tempKey.push(e.keyCode)
+if (tempKey.length > 3) {
+tempKey.shift();
+};
+if (tempKey[0] === 13 && tempKey[1] === 13 && tempKey[2] === 13) {
+console.log(tempKey);
+etape += 1;
+tempKey = [];
+console.log(tempKey);
+idContent.value += "------  Etape " + etape + "  ------";
+etapeLine.push(countLines("article_content", getCaretPosition(idContent)));
+console.log(etapeLine);
+};
+if (tempKey[2] === 8) {
+let tempText = idContent.value
+let textBefore = "";
+let textAfter = "";
+if (etapeLine.includes(countLines("article_content"))) {
+if (tempKey[1] === 8) {
+etapeLine = etapeLine.slice(indexOf(countLines("article_content")), 1);
+textBefore = document.getElementById(id).value.substring(0, getCaretPosition(idContent) - 21);
+textAfter = document.getElementById(id).value.substring(getCaretPosition(idContent), 9999);
+idContent.value = textBefore + textAfter;
+} else {} idContent.innerHTML = tempText
+}
+}
+// console.log("Position :" + getCaretPosition(idContent) + "\n  Ligne:" + countLines('article_content', getCaretPosition(idContent)));
+};
+idContent.addEventListener('keydown', checkTextArea);
+idContent.addEventListener('click', checkTextArea);
+if (! idContent.value) {
+idContent.innerHTML = "------  Etape " + etape + "  ------\n";
+}
+
+// Returns 3
+	</script>
+{% endblock %}

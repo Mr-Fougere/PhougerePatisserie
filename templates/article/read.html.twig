@@ -1,0 +1,81 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	{{parent()}}
+{% endblock %}
+{% block div %}
+	<div class="container justify-content-center d-flex h90 pt-5">
+		<div class="row g-0 w70 h100 borderRounded cadre-new m-1">
+			<span class=" h10 text-center card-title recipe-title" id="title">
+				{{article.title}}
+			</span>
+
+			<div class="col-4 h90 p-2 " id="colonne-gauche">
+				<div class="row h100 justify-content-center">
+					<img style="width: 20rem;height:20rem;object-fit: contain;" src="/uploads/brochures/{{article.brochureFileName}}" alt="image non trouvée">
+					<div class="input-field row ">
+						<div class="col text-center">
+							{{article.time}}
+						</div>
+					</div>
+
+					<div class="input-field row ">
+						<div class="col text-center">
+							{{ article.price}}
+						</div>
+					</div>
+					<div class="input-field row ">
+						<div class="col text-center">
+							{{ article.difficulty }}
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+			<div class="col-8">
+				<div class="text-center" id="recipe">
+					{{ article.content|trans|nl2br }}
+				</div>
+
+			</div>
+
+		</div>
+		<div class="row g-0 w30 h100 m-1  ">
+			<div class="col-12 h60 cadre-new p-2 m-1">
+				<div class="w100 h10 w100 text-center">
+					Espace Commentaire
+				</div>
+				<div class="overflow-auto h80">
+					{% for comment in comments %}
+						{% set url_delete = "/comment/delete/"~ comment.id %}
+						{% set url_edit = "/comment/edit/" ~ comment.id %}
+						<div class="card-recipe cadre-new p-2 my-1 {{comment.id}}">
+						<p>
+							{{comment.author}}
+							a publié le
+							{{comment.date|date("d/m/Y") }} à {{comment.date|date("g:i") }}
+						</p>
+						{{comment.content}}
+					<a href={{url_edit}} class="btn btn-warning" id="btn-edit">
+						<i class="bi bi-pencil-square"></i>
+					</a>
+					<a href={{url_delete}} class="btn btn-danger">
+						<i class="bi bi-x-lg"></i>
+					</a>
+					</div>
+				{% endfor %}
+			</div>
+
+		</div>
+		<div class="col-12 h40 cadre-new p-2 m-1">
+			{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+			{{form_row(form.author)}}
+			{{form_row(form.content)}}
+			<button type="submit" class="btn btn-success bg-green col-4 text-center">Commenter</button>
+			{{ form_end(form) }}
+		</div>
+	</div>
+
+</div>
+<script>
+</script>{% endblock %}
